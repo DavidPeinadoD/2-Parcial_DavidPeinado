@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Ship {
     private int size;
-    private int hits;
+    protected int hits;
     private Point startPoint;
     private Point endPoint;
 
@@ -78,11 +78,11 @@ public class Ship {
         return new Point(x, y);
     }
 
-    private boolean checkIfPointsFormLine(Point startPoint, Point endPoint) {
+    protected boolean checkIfPointsFormLine(Point startPoint, Point endPoint) {
         return startPoint.getX() == endPoint.getX() || startPoint.getY() == endPoint.getY();
     }
 
-    private int calculateLength(Point startPoint, Point endPoint) {
+    protected int calculateLength(Point startPoint, Point endPoint) {
         if (startPoint.getX() == endPoint.getX()) {
             return (int) Math.round(Math.abs(endPoint.getY() - startPoint.getY())) + 1;
         } else {
