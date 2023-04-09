@@ -21,3 +21,19 @@ a) Debo utilizar la palabra reservada self como prefijo
 #### 5 En el paradigma de la programación orientado a objetos:
 
 b) Se favorece la semántica y la reutilización de código en detrimento del rendimiento.
+
+### ¿Cuáles son las características de la programación orientada a objetos?
+
+  1. Abstraccion
+  2. Encapsulamiento
+  3. Herencia
+  4. Polimorfismo
+  5. Modularidad
+
+### ¿Qué es la visibilidad de una variable o un método? ¿Qué tipos hay? ¿Cuándo debe utilizarse cada tipo?
+  
+  La visibilidad de una variable es el acceso que tienen a dichas variables desde otras partes del codigo y si permiten ser modificadas o no.
+
+  1. Public: utilizada cuando queramos acceder desde otras partes del codigo
+  2. Private: utilizada para evitar acceder o modificar desde otras clases que no sean la propia
+  3. Protected: utilizada cuando queramos utilizar herencia y asi poder crear subclases
