@@ -4,10 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    private static boolean[][] attackedPoints = new boolean[10][10];
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
 
         // Obtener la configuración de los barcos del primer jugador
         System.out.println("Configuración de barcos del Primer Jugador:");
@@ -34,7 +32,7 @@ public class Main {
         while (!gameOver) {
             // Turno del Primer Jugador
             System.out.println("\nTurno del Primer Jugador:");
-            Point shotPoint1 = getRandomShotPoint(attackedPoints);
+            Point shotPoint1 = getRandomShotPoint();
             boolean hit1 = player1.attack(shotPoint1, player2);
             if (player2.isAlive()) {
                 System.out.println("Barcos restantes del Segundo Jugador: " + player2.getShips().size());
@@ -46,7 +44,7 @@ public class Main {
 
             // Turno del Segundo Jugador
             System.out.println("\nTurno del Segundo Jugador:");
-            Point shotPoint2 = getRandomShotPoint(attackedPoints);
+            Point shotPoint2 = getRandomShotPoint();
             boolean hit2 = player2.attack(shotPoint2, player1);
             if (player1.isAlive()) {
                 System.out.println("Barcos restantes del Primer Jugador: " + player1.getShips().size());
@@ -145,17 +143,10 @@ public class Main {
     }
 
     // Método para obtener un punto de disparo aleatorio
-    public static Point getRandomShotPoint(boolean[][] attackedPoints) {
+    public static Point getRandomShotPoint() {
         Random random = new Random();
-        int x, y;
-        do {
-            x = random.nextInt(10);
-            y = random.nextInt(10);
-        } while (attackedPoints[x][y]); // Verificar si el punto ya ha sido atacado
-
-        // Marcar el punto como atacado
-        attackedPoints[x][y] = true;
-
+        int x = random.nextInt(10);
+        int y = random.nextInt(10);
         return new Point(x, y);
     }
 }
