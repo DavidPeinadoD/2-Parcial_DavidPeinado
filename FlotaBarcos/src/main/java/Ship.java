@@ -1,31 +1,50 @@
 import java.awt.*;
 
 public class Ship {
-    private int size;
+    private final int size;
     protected int hits;
-    private Point startPoint;
-    private Point endPoint;
+    private final Point startPoint;
+    private final Point endPoint;
 
     public Ship(int size, Point startPoint, CardinalPoints direction) {
         this.size = size;
         this.startPoint = startPoint;
-        this.endPoint = calculateEndPoint(startPoint, direction, size);
+        if (direction != null) {
+            this.endPoint = calculateEndPoint(startPoint, direction, size);
+        } else {
+            this.endPoint = null;
+        }
         this.hits = 0;
     }
 
     public Ship(int size, Point startPoint, Point endPoint) throws Exception {
         this.size = size;
         this.startPoint = startPoint;
-        this.endPoint = endPoint;
-        if (!checkIfPointsFormLine(startPoint, endPoint) || calculateLength(startPoint, endPoint) != size - 1) {
-            throw new Exception("Invalid ship coordinates");
+        if (endPoint != null) {
+            this.endPoint = endPoint;
+            if (!checkIfPointsFormLine(startPoint, endPoint) || calculateLength(startPoint, endPoint) != size - 1) {
+                throw new Exception("Invalid ship coordinates");
+            }
+        } else {
+            throw new IllegalArgumentException("endPoint no puede ser nulo");
         }
         this.hits = 0;
     }
+    public boolean isHit(Point point) {
+        // Compara las coordenadas del punto con las coordenadas del barco
+        // y verifica si está dentro del rango del barco
+        return point.getX() >= this.startPoint.getX() &&
+                point.getX() <= this.endPoint.getX() &&
+                point.getY() >= this.startPoint.getY() &&
+                point.getY() <= this.endPoint.getY();
+    }
 
     public boolean isSunk() {
-        return hits == size;
+        // Compara la cantidad de golpes recibidos con el tamaño del barco
+        return this.hits == this.size;
     }
+
+
 
     public boolean getShot(Point shotPoint) {
         if (checkIfPointsFormLine(startPoint, endPoint)) {
@@ -41,6 +60,7 @@ public class Ship {
         }
         return false;
     }
+
 
     public int getSize() {
         return size;
@@ -79,6 +99,9 @@ public class Ship {
     }
 
     protected boolean checkIfPointsFormLine(Point startPoint, Point endPoint) {
+        if (endPoint == null) {
+            return false;
+        }
         return startPoint.getX() == endPoint.getX() || startPoint.getY() == endPoint.getY();
     }
 
