@@ -1,5 +1,9 @@
 # DavidPeinadoD/2-Parcial_DavidPeinado
 
+## Proyecto actualizado para los ejercicios 7 y 8, siento entregarlo tarde, pensaba que la entrega era para hoy.
+### Un saludo
+
+
 ### Preguntas Teoricas:
 
 #### 1 Los elementos que definen a un objeto son:
